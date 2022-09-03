@@ -13,10 +13,13 @@
  *
  * @package WordPress
  */
+define('FORCE_SSL_ADMIN', true);
 
-define(‘FORCE_SSL_ADMIN’, true);
-if ($_SERVER[‘HTTP_X_FORWARDED_PROTO’] == ‘https’)
-$_SERVER[‘HTTPS’]=’on’;
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
+        $_SERVER['HTTPS']='on';
+else
+        $_SERVER['HTTPS']='off';
+
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -65,4 +68,4 @@ if ( !defined('ABSPATH') )
 require_once(ABSPATH . 'wp-settings.php');
 
 define('WP_HOME','https://www.petrivanov.ru');
-define('WP_SITEURL',’https://www.petrivanov.ru');
+define('WP_SITEURL','https://www.petrivanov.ru');
